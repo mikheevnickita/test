@@ -37,8 +37,6 @@ namespace Test
             Console.WriteLine(tmp.Private);
             tmp.Private = 321;
             Console.WriteLine(tmp.Private);
-            
-            Console.ReadKey();
         }
     }
 }
