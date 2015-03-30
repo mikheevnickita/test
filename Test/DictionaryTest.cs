@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Test
 {
-    class DictionaryTest
+    class DictionaryTest : MyTest
     {
         private const Int32 N = 10000;
         private const Int32 M = 17519;
-        private static Double summ = 0;
+        private Double summ = 0;
 
-        public static void RunTest()
+        override protected void OnTest()
         {
             var keys = new Int32[N];
             var dict = new Dictionary<Int32, Double>();

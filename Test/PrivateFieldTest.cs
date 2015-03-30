@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Test
 {
-    class PrivateFieldTest
+    class PrivateFieldTest : MyTest
     {
         class A
         {
@@ -15,22 +15,28 @@ namespace Test
             }
         }
 
-        class B : A
+        class B
         {
+            private A field;
+
+            public B()
+            {
+                field = new A();
+            }
             public Int32 Private
             {
                 get
                 {
-                    return (Int32)(typeof(A).GetField("_a", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this));
+                    return (Int32)(typeof(A).GetField("_a", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(field));
                 }
                 set
                 {
-                    typeof(A).GetField("_a", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(this, value);
+                    typeof(A).GetField("_a", BindingFlags.NonPublic | BindingFlags.Instance).SetValue(field, value);
                 }
             }
         }
 
-        public static void RunTest()
+        override protected void OnTest()
         {
             B tmp = new B();
 
